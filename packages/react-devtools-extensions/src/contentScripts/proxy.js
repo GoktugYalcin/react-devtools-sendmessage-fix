@@ -65,7 +65,10 @@ function handleMessageFromPage(event) {
     case 'react-devtools-bridge': {
       backendInitialized = true;
 
-      port.postMessage(event.data.payload);
+      if(port) { // Sometimes port can be fall into empty.
+        port.postMessage(event.data.payload);
+      }
+      
       break;
     }
 
